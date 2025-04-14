@@ -23,6 +23,7 @@ class CategoryDocument(Document):
         model = Category
         fields = ["id", "name", "description"]
 
+
 @registry.register_document
 class ArticleDocument(Document):
     author = fields.ObjectField(properties={
