@@ -48,7 +48,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_swagger',
     'drf_yasg',
-    'django_elasticsearch_dsl'
+    'django_elasticsearch_dsl',
+    'channels'
 ]
 
 MIDDLEWARE = [
@@ -82,6 +83,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'demo.wsgi.application'
+ASGI_APPLICATION = 'demo.asgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases

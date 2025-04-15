@@ -1,7 +1,7 @@
-# videosdk/utils.py
 import jwt
 import time
 import os
+
 
 API_KEY = os.getenv("VIDEOSDK_API_KEY")
 SECRET = os.getenv("VIDEOSDK_SECRET")
