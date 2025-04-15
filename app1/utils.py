@@ -6,6 +6,7 @@ import os
 API_KEY = os.getenv("VIDEOSDK_API_KEY")
 SECRET = os.getenv("VIDEOSDK_SECRET")
 
+
 def generate_videosdk_token():
     payload = {
         "apikey": API_KEY,

@@ -1,0 +1,40 @@
+services:
+  db:
+    image: postgres:17
+    environment:
+      POSTGRES_DB: ${DATABASES_NAME}
+      POSTGRES_USER: ${DATABASES_USER}
+      POSTGRES_PASSWORD: ${DATABASES_PASSWORD}
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    env_file:
+      - .env
+
+  django-web:
+    build:
+      context: .
+      dockerfile: docker/app/Dockerfile
+    container_name: django-docker
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      DJANGO_SECRET_KEY: ${SECRET_KEY}
+      DEBUG: ${DEBUG}
+      DJANGO_LOGLEVEL: ${DJANGO_LOGLEVEL}
+      DJANGO_ALLOWED_HOSTS: ${ALLOWED_HOSTS}
+      DATABASE_NAME: ${DATABASES_NAME}
+      DATABASE_USERNAME: ${DATABASES_USER}
+      DATABASE_PASSWORD: ${DATABASES_PASSWORD}
+      DATABASE_HOST: ${DATABASES_HOST}
+      DATABASE_PORT: ${DATABASES_PORT}
+      command: python manage.py runserver
+
+    env_file:
+      - .env
+volumes:
+  postgres_data:
+

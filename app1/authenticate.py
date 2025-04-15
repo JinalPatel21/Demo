@@ -1,12 +1,14 @@
-from rest_framework_simplejwt.authentication import JWTAuthentication
+from typing import Optional
+
+from rest_framework.request import Request
+from rest_framework_simplejwt.authentication import JWTAuthentication, AuthUser
 from rest_framework.exceptions import AuthenticationFailed
+from rest_framework_simplejwt.tokens import Token
 
 
 class OneTokenPerUserAuthentication(JWTAuthentication):
     def authenticate(self, request):
-
         auth_result = super().authenticate(request)
-
         if auth_result is None:
             return None
 
